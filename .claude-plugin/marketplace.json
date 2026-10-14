@@ -1,0 +1,12 @@
+{
+  "name": "appvision",
+  "description": "Claude Code plugins from Appvision.",
+  "owner": { "name": "Appvision" },
+  "plugins": [
+    {
+      "name": "eraser-diagrams",
+      "source": "./plugins/eraser-diagrams",
+      "description": "Draw and render diagrams locally with Eraser's open-source engine: architecture, flowcharts, swimlanes, ERDs."
+    }
+  ]
+}

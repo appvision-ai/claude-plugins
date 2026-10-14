@@ -1,0 +1,43 @@
+{
+  "entities": [
+    {
+      "tag": "DatabaseTable", "id": "users", "label": "users", "icon": "user", "color": "blue", "x": 60, "y": 200, "width": 240,
+      "fields": [
+        { "name": "id", "type": "uuid", "meta": "pk" },
+        { "name": "email", "type": "text" },
+        { "name": "name", "type": "text" }
+      ]
+    },
+    {
+      "tag": "DatabaseTable", "id": "projects", "label": "projects", "icon": "folder", "color": "purple", "x": 460, "y": 40, "width": 240,
+      "fields": [
+        { "name": "id", "type": "uuid", "meta": "pk" },
+        { "name": "owner_id", "type": "uuid", "meta": "fk" },
+        { "name": "title", "type": "text" }
+      ]
+    },
+    {
+      "tag": "DatabaseTable", "id": "tasks", "label": "tasks", "icon": "list-checks", "color": "green", "x": 460, "y": 360, "width": 240,
+      "fields": [
+        { "name": "id", "type": "uuid", "meta": "pk" },
+        { "name": "project_id", "type": "uuid", "meta": "fk" },
+        { "name": "assignee_id", "type": "uuid", "meta": "fk" },
+        { "name": "status", "type": "text" }
+      ]
+    },
+    {
+      "tag": "DatabaseTable", "id": "comments", "label": "comments", "icon": "message-square", "color": "orange", "x": 860, "y": 360, "width": 240,
+      "fields": [
+        { "name": "id", "type": "uuid", "meta": "pk" },
+        { "name": "task_id", "type": "uuid", "meta": "fk" },
+        { "name": "body", "type": "text" }
+      ]
+    }
+  ],
+  "connections": [
+    { "tag": "DatabaseRelationship", "from": "users", "to": "projects", "fromField": "id", "toField": "owner_id", "relType": "one-to-many" },
+    { "tag": "DatabaseRelationship", "from": "users", "to": "tasks", "fromField": "id", "toField": "assignee_id", "relType": "one-to-many" },
+    { "tag": "DatabaseRelationship", "from": "projects", "to": "tasks", "fromField": "id", "toField": "project_id", "relType": "one-to-many" },
+    { "tag": "DatabaseRelationship", "from": "tasks", "to": "comments", "fromField": "id", "toField": "task_id", "relType": "one-to-many" }
+  ]
+}

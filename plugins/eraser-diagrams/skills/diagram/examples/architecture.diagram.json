@@ -1,0 +1,25 @@
+{
+  "entities": [
+    { "tag": "Icon", "id": "users", "icon": "users", "size": "md", "x": 40, "y": 260, "texts": [{ "text": "Customers" }] },
+
+    { "tag": "Group", "id": "edge", "title": { "text": "Edge", "icon": "globe" }, "color": "blue", "x": 200, "y": 100, "width": 180, "height": 370 },
+    { "tag": "Icon", "id": "frontdoor", "icon": "azure-front-doors", "size": "md", "x": 265, "y": 260, "containerId": "edge", "texts": [{ "text": "Front Door" }] },
+
+    { "tag": "Group", "id": "compute", "title": { "text": "Container Apps", "icon": "azure-container-apps-environments" }, "color": "purple", "x": 440, "y": 100, "width": 400, "height": 370 },
+    { "tag": "Icon", "id": "api", "icon": "fastapi", "size": "md", "x": 515, "y": 260, "containerId": "compute", "texts": [{ "text": "API" }] },
+    { "tag": "Icon", "id": "worker", "icon": "python", "size": "md", "x": 715, "y": 260, "containerId": "compute", "texts": [{ "text": "Worker" }] },
+
+    { "tag": "Group", "id": "data", "title": { "text": "Data", "icon": "database" }, "color": "green", "x": 960, "y": 100, "width": 200, "height": 370 },
+    { "tag": "Icon", "id": "cosmos", "icon": "azure-cosmos-db", "size": "md", "x": 1035, "y": 150, "containerId": "data", "texts": [{ "text": "Cosmos DB" }] },
+    { "tag": "Icon", "id": "blob", "icon": "azure-storage-accounts", "size": "md", "x": 1035, "y": 260, "containerId": "data", "texts": [{ "text": "Blob Storage" }] },
+    { "tag": "Icon", "id": "vault", "icon": "azure-key-vaults", "size": "md", "x": 1035, "y": 370, "containerId": "data", "texts": [{ "text": "Key Vault" }] }
+  ],
+  "connections": [
+    { "from": "users", "to": "frontdoor", "label": "HTTPS" },
+    { "from": "frontdoor", "to": "api" },
+    { "from": "api", "to": "worker", "label": "jobs" },
+    { "from": "api", "to": "cosmos", "fromPort": "top", "label": "read / write" },
+    { "from": "worker", "to": "blob", "label": "files" },
+    { "from": "worker", "to": "vault", "fromPort": "bottom", "label": "secrets", "lineStyle": "dashed" }
+  ]
+}

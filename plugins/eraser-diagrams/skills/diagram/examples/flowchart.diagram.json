@@ -1,0 +1,25 @@
+{
+  "entities": [
+    { "tag": "Shape", "id": "start", "shape": "oval", "color": "green", "x": 310, "y": 40, "width": 180, "height": 60, "texts": [{ "text": "Expense submitted" }] },
+    { "tag": "Shape", "id": "check", "x": 310, "y": 160, "width": 180, "height": 64, "texts": [{ "text": "Check receipt" }] },
+    { "tag": "Shape", "id": "large", "shape": "diamond", "color": "yellow", "x": 320, "y": 290, "width": 160, "height": 100, "texts": [{ "text": "Over £500?" }] },
+    { "tag": "Shape", "id": "auto", "x": 570, "y": 308, "width": 180, "height": 64, "texts": [{ "text": "Auto-approve" }] },
+    { "tag": "Shape", "id": "review", "x": 310, "y": 460, "width": 180, "height": 64, "texts": [{ "text": "Manager review" }] },
+    { "tag": "Shape", "id": "approved", "shape": "diamond", "color": "yellow", "x": 320, "y": 590, "width": 160, "height": 100, "texts": [{ "text": "Approved?" }] },
+    { "tag": "Shape", "id": "returned", "color": "red", "x": 50, "y": 608, "width": 180, "height": 64, "texts": [{ "text": "Return to employee" }] },
+    { "tag": "Shape", "id": "pay", "x": 310, "y": 760, "width": 180, "height": 64, "texts": [{ "text": "Pay expense" }] },
+    { "tag": "Shape", "id": "done", "shape": "oval", "color": "green", "x": 310, "y": 880, "width": 180, "height": 60, "texts": [{ "text": "Paid" }] }
+  ],
+  "connections": [
+    { "from": "start", "to": "check" },
+    { "from": "check", "to": "large" },
+    { "from": "large", "to": "auto", "label": "No", "fromPort": "right", "toPort": "left" },
+    { "from": "large", "to": "review", "label": "Yes", "fromPort": "bottom" },
+    { "from": "review", "to": "approved" },
+    { "from": "approved", "to": "pay", "label": "Yes", "fromPort": "bottom" },
+    { "from": "approved", "to": "returned", "label": "No", "fromPort": "left", "toPort": "right" },
+    { "from": "returned", "to": "check", "label": "resubmit", "fromPort": "top", "toPort": "left", "lineStyle": "dashed" },
+    { "from": "auto", "to": "pay", "fromPort": "bottom", "toPort": "right" },
+    { "from": "pay", "to": "done" }
+  ]
+}

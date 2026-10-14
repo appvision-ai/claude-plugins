@@ -1,0 +1,26 @@
+{
+  "entities": [
+    { "tag": "Pool", "id": "pool", "color": "blue", "title": { "text": "Purchase request" }, "x": 40, "y": 40, "width": 1240, "height": 550 },
+    { "tag": "Lane", "id": "requester", "title": { "text": "Requester" }, "containerId": "pool", "x": 90, "y": 55, "width": 1175, "height": 170 },
+    { "tag": "Lane", "id": "manager", "title": { "text": "Manager" }, "containerId": "pool", "x": 90, "y": 230, "width": 1175, "height": 170 },
+    { "tag": "Lane", "id": "procurement", "title": { "text": "Procurement" }, "containerId": "pool", "x": 90, "y": 405, "width": 1175, "height": 170 },
+
+    { "tag": "Event", "id": "need", "containerId": "requester", "x": 172, "y": 112, "texts": [{ "text": "Need identified" }] },
+    { "tag": "Activity", "id": "raise", "icon": "file-plus", "containerId": "requester", "x": 300, "y": 100, "width": 200, "height": 80, "texts": [{ "text": "Raise request" }] },
+    { "tag": "Event", "id": "rejected", "icon": "x", "containerId": "requester", "x": 772, "y": 112, "texts": [{ "text": "Request rejected" }] },
+
+    { "tag": "Activity", "id": "review", "icon": "search", "containerId": "manager", "x": 500, "y": 275, "width": 200, "height": 80, "texts": [{ "text": "Review request" }] },
+    { "tag": "Gateway", "id": "decide", "icon": "x", "containerId": "manager", "x": 772, "y": 287, "texts": [{ "text": "Approve?" }] },
+
+    { "tag": "Activity", "id": "order", "icon": "shopping-cart", "containerId": "procurement", "x": 900, "y": 450, "width": 200, "height": 80, "texts": [{ "text": "Place order" }] },
+    { "tag": "Event", "id": "placed", "containerId": "procurement", "x": 1162, "y": 462, "texts": [{ "text": "Order placed" }] }
+  ],
+  "connections": [
+    { "from": "need", "to": "raise" },
+    { "from": "raise", "to": "review", "fromPort": "bottom", "toPort": "left" },
+    { "from": "review", "to": "decide" },
+    { "from": "decide", "to": "rejected", "label": "No", "fromPort": "top" },
+    { "from": "decide", "to": "order", "label": "Yes", "fromPort": "right", "toPort": "top" },
+    { "from": "order", "to": "placed" }
+  ]
+}

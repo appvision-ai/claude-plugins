@@ -1,0 +1,10 @@
+{
+  "name": "eraser-diagrams",
+  "displayName": "Eraser Diagrams",
+  "version": "0.1.0",
+  "description": "Draw architecture diagrams, flowcharts, swimlanes and ERDs as Eraser diagram JSON and render them locally to PNG or HTML with Eraser's open-source engine. A layout check measures the rendered page and reports overlaps, spilled captions and cramped labels so the diagram can be fixed before anyone sees it.",
+  "author": { "name": "Kaushal Trivedi" },
+  "repository": "https://github.com/appvision-ai/claude-plugins",
+  "license": "MIT",
+  "keywords": ["diagrams", "eraser", "architecture", "flowchart", "bpmn", "swimlane", "erd"]
+}
