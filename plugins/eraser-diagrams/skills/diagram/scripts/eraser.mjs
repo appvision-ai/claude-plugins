@@ -192,7 +192,9 @@ async function render(argv) {
     for (const input of positionals) {
       results.push(await renderOne({ renderer, browser, input, values, containerTags }));
     }
-    await renderer.close();
+    // Chrome may have gone already, as on a Mac with no display, once the images are written: that isn't a failed
+    // render. Seen on the Mac mini, run in the background by AV Claude's Code server (23 Nov 2026).
+    await renderer.close().catch(() => {});
     const ok = results.every((r) => r.ok && (!values.strict || r.clean));
     process.stdout.write(`${JSON.stringify({ ok, results }, null, 2)}\n`);
     process.exitCode = ok ? 0 : 1;
